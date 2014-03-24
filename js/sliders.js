@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/MIT
  * ---------------------------------- */
 
-!(function () {
+(function () {
   'use strict';
 
   var pageX;
@@ -131,4 +131,4 @@
   window.addEventListener('touchmove', onTouchMove);
   window.addEventListener('touchend', onTouchEnd);
 
-}());
+})();
