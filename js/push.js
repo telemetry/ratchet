@@ -227,7 +227,11 @@
         clearTimeout(options._timeout);
       }
       if (xhr.readyState === 4) {
-        xhr.status === 200 ? success(xhr, options) : failure(options.url);
+        if (xhr.status === 200) {
+          success(xhr, options);
+        } else {
+          failure(options.url);
+        }
       }
     };
 
@@ -341,7 +345,9 @@
     }
 
     if (!transition) {
-      complete && complete();
+      if (complete) {
+        complete();
+      }
     }
 
     if (transition === 'fade') {
@@ -357,7 +363,9 @@
         container.parentNode.removeChild(container);
         swap.classList.remove('fade');
         swap.classList.remove('in');
-        complete && complete();
+        if (complete) {
+          complete();
+        }
       };
       container.addEventListener('webkitTransitionEnd', fadeContainerEnd);
 
@@ -369,7 +377,9 @@
         swap.classList.remove('sliding', 'sliding-in');
         swap.classList.remove(swapDirection);
         container.parentNode.removeChild(container);
-        complete && complete();
+        if (complete) {
+          complete();
+        }
       };
 
       container.offsetWidth; // force reflow
